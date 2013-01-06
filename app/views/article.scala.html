@@ -1,0 +1,21 @@
+@(post: models.Post)
+
+<article>
+    <header>
+        <h1><a href="@routes.Blog.show(post.id.get)" title="@post.title">@post.title</a></h1>
+    </header>
+    <time>
+        @post.createdFormat("dd MMM yyyy") | 
+        Category: <a href="@routes.Blog.category(post.category.id.get)">@post.category.title</a> | 
+        <a href="@routes.Blog.show(post.id.get)#disqus_thread" data-disqus-identifier="@post.id.get">View Comments</a>
+    </time>
+    <div>
+        @Html(post.html)
+    </div>
+	<hr/>
+	<time class="bottom">
+        Posted @post.createdFormat("dd MMM yyyy") | 
+        Category: <a href="@routes.Blog.category(post.category.id.get)">@post.category.title</a> | 
+        <a href="@routes.Blog.show(post.id.get)#disqus_thread" data-disqus-identifier="@post.id.get">View Comments</a>
+    </time>
+</article>

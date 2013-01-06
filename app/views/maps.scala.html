@@ -1,0 +1,37 @@
+
+@main("Maps | omsn.de Blog") {
+
+	<section id="breadcrumb">
+        <a href="@routes.Blog.index()">Blog</a> &raquo; Maps
+    </section>
+
+    <section id="content">
+		<section id="maps">
+			
+			<h1>Visited Places</h1>
+			
+            <p>
+                Places where I have lived (green), and places where I have been (blue). Watch out for blogposts about each spot (blue with dot).
+            </p>
+            
+			<iframe width="960" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;msa=0&amp;msid=208249019782599790139.0004a1ed2f9a5127ded61&amp;ll=25.482951,36.210938&amp;spn=126.76457,337.148438&amp;z=2&amp;output=embed"></iframe>
+			<p>
+				<a href="http://maps.google.com/maps/ms?ie=UTF8&amp;hl=en&amp;msa=0&amp;msid=208249019782599790139.0004a1ed2f9a5127ded61&amp;ll=25.482951,36.210938&amp;spn=126.76457,337.148438&amp;z=2&amp;source=embed">View on Google Maps</a>
+			</p>
+			
+			
+			<h1>Officially Omsnized Places</h1>
+			
+            <p>
+                Places that already have been omsnized. Check <a href="@routes.Blog.show("omsnize-your-world")">this blog post</a> to see evidence of each omsnation.
+            </p>
+            
+			<iframe width="960" height="500" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="http://maps.google.com/maps/ms?msa=0&amp;ie=UTF8&amp;msid=208249019782599790139.0004a7bc4b881f08ebeef&amp;z=2&amp;output=embed"></iframe>
+			<p>
+				<a href="http://maps.google.com/maps/ms?msa=0&amp;ie=UTF8&amp;msid=208249019782599790139.0004a7bc4b881f08ebeef&amp;z=2&amp;output=embed">View on Google Maps</a>
+			</p>
+			
+			
+		</section>
+    </section>
+}

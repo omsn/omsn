@@ -1,0 +1,29 @@
+@(post: models.Post, postCounts: List[(Category, Long)], randomPosts: Seq[models.Post])
+
+@main(post.title + " | omsn.de Blog") {
+    
+    <section id="breadcrumb">
+        <a href="@routes.Blog.index()">Blog</a> &raquo;
+        <a href="@routes.Blog.category(post.category.id.get)">@post.category.title</a> &raquo;
+        @post.title
+    </section>
+    
+    <section id="content">
+    
+    	@sidebar(postCounts, randomPosts)
+    
+    	<section class="post">
+    
+    		@article(post)
+		    
+		    <script type="text/javascript">
+            var disqus_identifier = '@post.id.get';
+            </script>
+        	<div id="disqus_thread"></div>
+        	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        	<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+   
+   		</section> 
+   		
+   	</section> 
+}

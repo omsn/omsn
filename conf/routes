@@ -1,0 +1,26 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+GET     /                           controllers.Start.index
+GET		/blog						controllers.Blog.index(page: Int ?= 1)
+GET		/blog/category/:cat			controllers.Blog.category(cat: String, page: Int ?= 1)
+GET		/blog/archive				controllers.Blog.archive
+GET		/blog/maps					controllers.Blog.maps
+GET		/blog/about					controllers.Blog.about
+GET		/blog/:id					controllers.Blog.show(id: String)
+#legacy
+GET		/news/:id					controllers.Blog.news(id: String)
+
+GET		/upload/*path				controllers.Blog.file(path)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET		/favicon.ico				controllers.Assets.at(path="/public", file="img/favicon.ico")
+
+# API
+GET		/api/post					controllers.Admin.list(accessToken: Option[String])
+GET		/api/post/:id				controllers.Admin.detail(id: String, accessToken: Option[String])
+POST	/api/post					controllers.Admin.create
+POST	/api/post/:id				controllers.Admin.update(id: String)
+POST	/api/image/:mode			controllers.Admin.image(mode: String)

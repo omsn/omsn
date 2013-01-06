@@ -1,0 +1,60 @@
+@(postsPerMonth: Map[String, Seq[Post]], total: Long, first: Post, postCounts: List[(Category, Long)], randomPosts: Seq[Post])
+
+@main("Archive | omsn.de Blog") {
+    
+    <section id="breadcrumb">
+        <a href="@routes.Blog.index()">Blog</a> &raquo; Archive
+    </section>
+    
+    <section id="content">
+
+        @sidebar(postCounts, randomPosts)
+
+        <section id="archive">
+
+            <p>
+                Welcome to the famous and legendary omsn.de archives!
+                There have been @total posts published since @first.createdFormat("dd MMM yyyy").
+                Happy browsing!
+            </p>
+
+            <ul id="months">
+                @for((month, posts) <- postsPerMonth) {
+                <li>
+                    <h2>@posts(0).createdFormat("MMMM yyyy")</h2>
+                    <ul class="post">
+                        @for(p <- posts) {
+                        <li class="rounded_borders">
+                            <table>
+                                <tr>
+                                    <td class="title">
+                                        <a href="@routes.Blog.show(p.id.get)">@p.title</a>
+                                    </td>
+
+                                    <td class="date">
+                                        <div class="hover">
+                                            <img src="@routes.Assets.at("img/date.png")" alt="date" /> @p.createdFormat("dd MMM yyyy")
+                                        </div>
+                                    </td>
+                                    <td class="category">
+                                        <div class="hover">
+                                            <img src="@routes.Assets.at("img/category.png")" alt="category" /> @p.category.title
+                                        </div>
+                                    </td>
+                                    <td class="comments">
+                                        <div class="hover">
+                                            <img src="@routes.Assets.at("img/comments.png")" alt="comments" /> 
+        									<a href="@routes.Blog.show(p.id.get)#disqus_thread" data-disqus-identifier="@p.id.get">View Comments</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                        }
+                    </ul>
+                </li>
+                }
+            </ul>
+        </section>
+    </section>
+}

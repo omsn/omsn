@@ -1,0 +1,113 @@
+
+@main("About | omsn.de Blog") {
+    
+    <section id="breadcrumb">
+        <a href="@routes.Blog.index()">Blog</a> &raquo; About Korbinian Schmid
+    </section>
+    
+    <section id="content">
+    
+    	<section id="sidebar">
+            <div id="technology" class="sidebarbox">
+                <h2>Technology</h2>
+                This website is written in <a href="http://scala-lang.org">Scala</a>, runs on <a href="http://playframework.org">Play!</a> 
+                and is hosted on <a href="heroku.com">Heroku</a>. Javascript magic is powered by <a href="http://jquery.com">jQuery</a>.
+                Check out the <a href="http://github.com/omsn/omsn">source code on github</a>!
+            </div>
+			<div class="sidebarbox">
+				<h2>Side Projects</h2>
+   				<div class="cvitem">
+   					<h3><a href="@routes.Blog.show("introducing-pick-my-dress")" target="_blank"><strong>Pick My Dress</strong></a></h3>
+   					<p>Interactive platform to help you decide what to wear</p>
+   				</div>
+   				<div class="cvitem">
+   					<h3>
+   					<a href="http://bhuio.com" target="_blank"><strong>Bhuio</strong></a> 
+   					and 
+   					<a href="http://holfeld.com" target="_blank"><strong>Holfeld Apps</strong></a>
+   					</h3>
+   					<p>Useful smartphone language learning applications for travel and fun</p>
+   				</div>
+   				<div class="cvitem">
+   					<h3><a href="http://tvoicer.com" target="_blank"><strong>tvoicer</strong></a></h3>
+   					<p>Platform to distribute five-second voice messages</p>
+   				</div>
+   			</div>
+   			<div id="socialmedia" class="sidebarbox">
+                <h2>Connect</h2>
+				@connect()
+            </div>
+            <div class="sidebarbox">
+                <h2>Email</h2>
+                ksc@@<span class="displaynone">null</span>omsn.<span class="displaynone">1337</span>de  
+            </div>
+   			<div id="twitpics" class="sidebarbox">
+				<h2>Latest Twitpics</h2>
+
+			</div>
+        </section>
+    
+    	<section id="about">
+    
+   			<p>
+   			My name is Korbinian Schmid and I was born and raised in Munich, Germany. After high school I toured six months through Australia and discovered my passion
+   			for traveling and foreign cultures. During my studies I got the chance to spend seven months in <a href="@routes.Blog.category("valencia-2009")">Valencia, 
+   			Spain</a> and six months in California, USA. I am happily married since 11/11/11 and we decided after my graduation to move to the San Francisco Bay Area,
+   			where we live since January 2013.
+   			</p>
+   			
+   			<img src="@routes.Assets.at("img/about1.jpg")" alt=""/>
+    		<div class="caption">My wife and I representing Mexico and Germany in San Francisco</div>
+   			
+   			<p>
+   			I write mostly about personal stuff, but recently try to post more about technical, work-related topics. If you want to get in touch with me for whatever 
+   			reason, don't hesitate to connect.
+   			</p>
+   			
+   			<h2>Education</h2>
+   			
+   			<div class="cvitem">
+   				<div class="when">Oct 2010 - Dec 2012</div>
+   				<h3><strong>Master of Science (with honors)</strong></a> <a href="http://studieren.se" target="_blank">Software Engineering</a></h3>
+   				<p><a href="http://www.tum.de/" target="_blank">Technical University of Munich (TUM)</a> | Munich, Germany<br/>
+   				<a href="http://www.lmu.de/" target="_blank">Ludwig-Maximilians-Universität (LMU)</a> | Munich, Germany<br/> 
+   				<a href="http://www.uni-augsburg.de/" target="_blank">University of Augsburg</a> | Augsburg, Germany</p>
+   			</div>
+   			<div class="cvitem">
+   				<div class="when">Oct 2006 - Dec 2009</div>
+   				<h3><strong>Bachelor of Science</strong> <a href="http://www.informatik.uni-augsburg.de/studium/studiengaenge/bachelor_im.html">Computer Science and Multimedia</a></h3>
+   				<p><a href="http://www.uni-augsburg.de/" target="_blank">University of Augsburg</a> | Augsburg, Germany<br/>
+   				<a href="http://www.uv.es/" target="_blank">University of Valencia</a> | Valencia, Spain</p>
+   			</div>
+   			
+   			<h2>Professional Experience</h2>
+   			
+   			<div class="cvitem">
+   				<div class="when">Jan 2013 - now</div>
+   				<h3><a href="http://labs.oracle.com/" target="_blank"><strong>Oracle Labs</strong></a> | Belmont, California, USA</h3>
+   				<p>Working on a domain specific language for graph analysis</p>
+   			</div>
+   			<div class="cvitem">
+   				<div class="when">Mar 2012 - Sep 2012</div>
+   				<h3><a href="http://vwerl.com/" target="_blank"><strong>Volkswagen Electronics Research Lab</strong></a> | Belmont, California, USA</h3>
+   				<p>Enhanced an existing specification for seamless communication of smartphones with vehicle infotainment systems</p>
+   			</div>
+   			<div class="cvitem">
+   				<div class="when">Feb 2011 - Dec 2012</div>
+   				<h3><a href="http://anfe.ma"><strong>anfema</strong></a> | Munich, Germany</h3>
+   				<p>Android Ninja</p>
+   			</div>
+   			<div class="cvitem">
+   				<div class="when">Apr 2010 - Sep 2010</div>
+   				<h3><a href="http://amiando.com"><strong>amiando</strong></a> (now acquired by <a href="http://xing.com">XING</a>) | Munich, Germany</h3>
+   				<p>Backend web application development</p>
+   			</div>
+   			<div class="cvitem">
+   				<div class="when">Aug 2007 - Sep 2008</div>
+   				<h3><a href="http://vogel.de"><strong>Vogel IT-Medien</strong></a> | Augsburg, Germany</h3>
+   				<p>Online Marketing. Search Engine Optimization. Web Design</p>
+   			</div>
+   			
+   		</section>    		
+   	</section> 
+}

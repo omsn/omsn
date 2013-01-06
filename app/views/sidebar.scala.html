@@ -1,0 +1,34 @@
+@(postCounts: List[(Category, Long)], randomPosts: Seq[Post])
+        <section id="sidebar">
+            <div id="about" class="sidebarbox">
+                Servus! My name is Korbinian Schmid. I am a Software Engineer from
+                Munich, Germany currently living in the San Francisco Bay Area.
+                This is my private blog where I occasionally write
+				about random stuff since 2007. <br/>
+                <a href="@routes.Blog.about">More about me &raquo;</a>
+            </div>
+            <div id="socialmedia" class="sidebarbox">
+                <h2>Connect</h2>
+				@connect()
+            </div>
+            <div class="sidebarbox list">
+                <h2>Categories</h2>
+                <ul>
+                    @for(pc <- postCounts) {
+                    	<li><a href="@routes.Blog.category(pc._1.id.get)">@pc._1.title</a> (@pc._2)</li>
+                    }
+                </ul>
+            </div>
+            <div id="twitpics" class="sidebarbox">
+				<h2>Latest Twitpics</h2>
+
+			</div>
+			<div class="sidebarbox list">
+				<h2>Random posts</h2>
+				<ul>
+					@for(p <- randomPosts) {
+  						<li><a href="@routes.Blog.show(p.id.get)">@p.title</a></li>
+					}
+				</ul>
+			</div>
+        </section>

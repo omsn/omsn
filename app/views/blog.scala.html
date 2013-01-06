@@ -1,0 +1,83 @@
+@(posts: Seq[models.Post], page: Int, totalPages: Int, category: Option[Category], postCounts: List[(Category, Long)], randomPosts: Seq[models.Post])
+
+@main("omsn.de Blog") {
+    
+    <section id="breadcrumb">
+        <a href="@routes.Blog.index()">Blog</a> &raquo;
+			
+		@category match {
+			case Some(c) => { 
+				@if(page > 1) {
+			 		<a href="@routes.Blog.category(c.id.get)">@c.title</a> &raquo; Page @page
+				} else {
+					@c.title
+				}
+			}
+			case None => { 
+				@if(page > 1) {
+			 		Page @page
+				} else {
+					Latest
+				}
+			}
+		}
+    </section>
+    
+    <section id="content">
+
+        @sidebar(postCounts, randomPosts)
+
+        <ol class="post">
+            @for(p <- posts) {
+            	<li> @article(p) </li>
+            }
+        </ol>
+		
+		@if(totalPages > 1) {
+			<section id="pager">
+    		@if(page > 1) {
+    			<div id="newer">
+    				@category match {
+						case Some(c) => { 
+			 				<a href="@routes.Blog.category(c.id.get, page - 1)">&laquo; Newer</a>
+						}
+						case None => {
+							<a href="@routes.Blog.index(page - 1)">&laquo; Newer</a>
+						}
+					}
+    			</div>
+    		}
+    		@if(page < totalPages) {
+    			<div id="older">
+    				@category match {
+						case Some(c) => { 
+			 				<a href="@routes.Blog.category(c.id.get, page + 1)">Older &raquo;</a>
+						}
+						case None => {
+							<a href="@routes.Blog.index(page + 1)">Older &raquo;</a>
+						}
+					}
+    			</div>
+    		}
+    		<div id="pages">
+    			@for(i <- 1 to totalPages) {
+    				@if(i == page) {
+    					@i
+    				} else {
+    					@category match {
+							case Some(c) => { 
+			 					<a href="@routes.Blog.category(c.id.get, i)"> @i </a>
+							}
+							case None => {
+								<a href="@routes.Blog.index(i)"> @i </a>
+							}
+						}
+					}
+    			}
+    		</div>
+    		</section>
+		}
+    </section>
+    
+    
+}

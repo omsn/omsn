@@ -1,0 +1,56 @@
+@(posts: Seq[models.Post])
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>OMSN.DE | private website of Korbinian Schmid</title>
+	<link href="@routes.Assets.at("img/favicon.ico")" rel="shortcut icon" type="image/x-icon" />
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet" type="text/css" />
+	<link href="http://fonts.googleapis.com/css?family=Oswald' rel="stylesheet" type="text/css" />
+	<link href="@routes.Assets.at("css/reset.css")" rel="stylesheet" type="text/css" />
+	<link href="@routes.Assets.at("css/start.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+	<div id="content">
+
+		<h1>Korbinian Schmid</h1>
+	
+		<div id="connect"> @connect() </div>
+	
+		<div id="info">
+
+			<img src="@routes.Assets.at("img/me.jpg")" alt=""/>
+
+			<p>
+			Software Engineer from Munich, Germany. Currently working at <a href="http://labs.oracle.com">Oracle Labs</a> in the San Francisco Bay Area. Previously active at <a href="http://www.vwerl.com">Volkswagen Electronics Research Lab</a>
+			as well as several Munich-based startups. 
+			Holding a M.Sc. in <a href="http://studieren.se">Software Engineering</a> from <a href="http://www.tum.de/en/homepage/">TUM</a>
+			and a B.Sc. in Computer Science from <a href="http://www.uni-augsburg.de/en">UNA</a>. <br/>
+			</p>
+			<p>
+			<a href="@routes.Blog.about()">More about me &raquo;</a>
+			</p>
+		</div>
+
+		<div id="latest">
+			<h2>Projects</h2>
+			<ul>
+				<li><a href="http://www.tvoicer.com">tvoicer</a> - voices to the people</li>
+				<li><a href="http://www.pickmydress.net">Pick My Dress</a> - interactive platform to help you decide what to wear. 
+				<a href="@routes.Blog.show("introducing-pick-my-dress")">We got an award for this!</a></li>
+				<li><a href="http://www.bhuio.com">Bhuio</a> and <a href="http://www.holfeld.com">Holfeld</a> - smartphone apps for travel and fun. Already over 7 million downloads worldwide. Try them!</li>
+				<li><a href="http://daxdroid.blogspot.com">DaxDroid</a> - daily trading signal on your smartphone. Powered by a data pool which lasts back until 1995.</li>
+			</ul>
+			<h2>Latest Blog Posts</h2>
+			<ul>
+				@for(p <- posts) {
+  					<li>@p.createdFormat("MMM yyyy"): <a href="@routes.Blog.show(p.id.get)">@p.title</a></li>
+				}
+			</ul>
+			<p><a href="@routes.Blog.index(1)">Read my blog &raquo;</a></p>
+		</div>
+	
+	</div>
+</body>
+</html>
