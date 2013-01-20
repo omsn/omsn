@@ -101,11 +101,18 @@ object Post {
 		}
 	}
 
-	def random(amount: Int = 5): Seq[Post] = {
+	def random(amount: Int = 5): Seq[Post] = random(Seq(), amount)
+	
+	def random(posts: Seq[Post], amount: Int): Seq[Post] = {
+		if (posts.length == amount)
+			posts
+		else
+			random(posts ++ Seq(randomPost()), amount)
+	}
+	
+	def randomPost(): Post = {
 		DB.withConnection { implicit connection =>
-			SQL("select * from post offset random() * (select count(id) from post) limit {limit}")
-				.on('limit -> amount)
-				.as(Post.simple *)
+			SQL("select * from post offset random() * (select count(id) from post) limit 1").as(Post.simple.single)
 		}
 	}
 
