@@ -83,6 +83,7 @@ section#content { width:960px; margin:30px auto 70px auto; }
 .post article table td { border-top:1px solid #ccc; padding:0.5em 0.5em 0.5em 0; }
 .caption { font-size:0.8em; text-align:center; color:#555152; margin-top:5px; margin-bottom:1em; }
 .post article ul { list-style-type:square; padding-left:20px; margin-bottom:1.143em; }
+.post article ol { list-style-type:decimal; padding-left:20px; margin-bottom:1.143em; }
 .post article blockquote { margin-bottom:1.143em; padding-left:20px; font-style:italic; }
 
 .post article { margin-bottom:75px; }
