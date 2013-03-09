@@ -52,7 +52,7 @@ section#content { width:960px; margin:30px auto 70px auto; }
 #sidebar #socialmedia li { float:left; padding:0 7px; }
 #sidebar #socialmedia li#first { padding-left:0; }
 #sidebar #socialmedia li#last { padding-right:0; }
-
+#sidebar #swippbox { margin-bottom:6em; }
 #sidebar #search input { float:left; padding:6px 0; margin-right:10px; width:200px; }
 #sidebar #search button { }
 
