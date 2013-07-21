@@ -15,25 +15,25 @@ import play.Logger
 
 object S3File {
 
-	val bucket = Play.current.configuration.getString("aws.s3.bucket").get
-	val key = Play.current.configuration.getString("aws.s3.access.key").get
-	val secret = Play.current.configuration.getString("aws.s3.secret.key").get
-	val amazonS3 = new AmazonS3Client(new BasicAWSCredentials(key, secret))
+  val bucket = Play.current.configuration.getString("aws.s3.bucket").get
+  val key = Play.current.configuration.getString("aws.s3.access.key").get
+  val secret = Play.current.configuration.getString("aws.s3.secret.key").get
+  val amazonS3 = new AmazonS3Client(new BasicAWSCredentials(key, secret))
 
-	val sdf = new SimpleDateFormat("yyyy-MM-dd")
-	sdf.setTimeZone(TimeZone.getTimeZone("UTC"))
+  val sdf = new SimpleDateFormat("yyyy-MM-dd")
+  sdf.setTimeZone(TimeZone.getTimeZone("UTC"))
 
-	def create(file: File, fileName: String) = {
-		val path = sdf.format(new Date()) + "/" + fileName
-		Logger.debug("create: " + path)
-		val req: PutObjectRequest = new PutObjectRequest(bucket, path, file)
-			.withCannedAcl(CannedAccessControlList.PublicRead)
-			.withStorageClass(StorageClass.ReducedRedundancy)
-		val res = amazonS3.putObject(req); // upload file
-		"upload/" + path
-	}
+  def create(file: File, fileName: String) = {
+    val path = sdf.format(new Date()) + "/" + fileName
+    Logger.debug("create: " + path)
+    val req: PutObjectRequest = new PutObjectRequest(bucket, path, file)
+      .withCannedAcl(CannedAccessControlList.PublicRead)
+      .withStorageClass(StorageClass.ReducedRedundancy)
+    val res = amazonS3.putObject(req); // upload file
+    "upload/" + path
+  }
 
-	def getUrl(path: String): String = {
-		"http://" + bucket + ".s3.amazonaws.com/" + path
-	}
+  def getUrl(path: String): String = {
+    "http://" + bucket + ".s3.amazonaws.com/" + path
+  }
 }
