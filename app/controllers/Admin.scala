@@ -20,11 +20,11 @@ import play.api.libs.Files.TemporaryFile
 object Admin extends Controller {
 
   def list(accessToken: Option[String]) = Action { implicit request =>
-    authorize(request, Ok(Json.toJson(Post.findAll())))
+    authorize(request, request => Ok(Json.toJson(Post.findAll())))
   }
 
   def detail(id: String, accessToken: Option[String]) = Action { implicit request =>
-    authorize(request,
+    authorize(request, request =>
       Post.findById(id) match {
         case Some(post) => Ok(Json.toJson(post))
         case None => NotFound(Json.toJson(Map("error" -> ("no post found with id " + id))))
@@ -32,7 +32,7 @@ object Admin extends Controller {
   }
 
   def create() = Action { implicit request =>
-    authorize(request,
+    authorize(request, request =>
       request.body.asFormUrlEncoded.map { pairs =>
         val data = {
           for (property <- Seq("id", "categoryId", "title", "html"))
@@ -71,7 +71,7 @@ object Admin extends Controller {
   }
 
   def update(id: String) = Action { implicit request =>
-    authorize(request,
+    authorize(request, request =>
       request.body.asFormUrlEncoded.map { pairs =>
         val category = {
           val categoryId = pairs.get("categoryId").map(_(0))
@@ -92,7 +92,7 @@ object Admin extends Controller {
   }
 
   def image(mode: String) = Action { implicit request =>
-    authorize(request,
+    authorize(request, request =>
       request.body.asMultipartFormData.map { data =>
         if (Seq("asis", "cover", "thumbs") contains mode == false)
           BadRequest(Json.toJson(Map("error" -> ("mode " + mode + " is unknown"))))
@@ -133,13 +133,13 @@ object Admin extends Controller {
   val sdf = new SimpleDateFormat(dateFormat)
   sdf.setTimeZone(TimeZone.getTimeZone("UTC"))
 
-  def authorize(request: Request[AnyContent], res: SimpleResult[JsValue]): Result = {
+  def authorize(request: Request[AnyContent], res: Request[AnyContent] => SimpleResult[JsValue]): Result = {
     val msg = salt + sdf.format(new Date().getTime())
     val hash = MessageDigest.getInstance(hashAlgorithm).digest(msg.getBytes())
     val should = Hex.encodeHex(hash).mkString
     val is = request.headers.get(paramName).getOrElse("")
     if (is == should)
-      res
+      res(request)
     else
       Unauthorized(Json.toJson(Map("error" -> "unauthorized request")))
   }
