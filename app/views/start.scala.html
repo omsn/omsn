@@ -34,21 +34,7 @@
 		</div>
 
 		<div id="latest">
-			<h2>Projects</h2>
-			<ul>
-				<li><a href="http://www.tvoicer.com">tvoicer</a> - voices to the people</li>
-				<li><a href="http://www.pickmydress.net">Pick My Dress</a> - interactive platform to help you decide what to wear. 
-				<a href="@routes.Blog.show("introducing-pick-my-dress")">We got an award for this!</a></li>
-				<li><a href="http://www.bhuio.com">Bhuio</a> and <a href="http://www.holfeld.com">Holfeld</a> - smartphone apps for travel and fun. Already over 7 million downloads worldwide. Try them!</li>
-				<li><a href="http://daxdroid.blogspot.com">DaxDroid</a> - daily trading signal on your smartphone. Powered by a data pool which lasts back until 1995.</li>
-			</ul>
-			<h2>Latest Blog Posts</h2>
-			<ul>
-				@for(p <- posts) {
-  					<li>@p.createdFormat("MMM yyyy"): <a href="@routes.Blog.show(p.id.get)">@p.title</a></li>
-				}
-			</ul>
-			<p><a href="@routes.Blog.index(1)">Read my blog &raquo;</a></p>
+
 		</div>
 	
 	</div>
